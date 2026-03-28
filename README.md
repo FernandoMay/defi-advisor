@@ -102,3 +102,74 @@ Este proyecto está bajo la Licencia MIT. Consulte el archivo `LICENSE` para má
 ## Contacto
 
 Para preguntas o comentarios, por favor, contacte a [Tu Nombre/Email/GitHub].
+
+## SDK (TypeScript)
+
+El SDK de DeFi Advisor permite a otros desarrolladores integrar fácilmente las funcionalidades principales del proyecto en sus aplicaciones. Proporciona métodos para consultar estrategias DeFi, analizar el riesgo del usuario y obtener recomendaciones personalizadas.
+
+### Instalación
+
+```bash
+npm install defi-advisor-sdk
+```
+
+### Uso
+
+```typescript
+import DefiAdvisorSDK from 'defi-advisor-sdk';
+
+const sdk = new DefiAdvisorSDK('https://api.defi-advisor.com'); // Reemplaza con la URL de tu API
+
+async function main() {
+  try {
+    // Consultar estrategias DeFi
+    const strategies = await sdk.getStrategies();
+    console.log('Estrategias DeFi:', strategies);
+
+    // Analizar riesgo de un usuario
+    const userAddress = '0x123...'; // Dirección de ejemplo
+    const riskAnalysis = await sdk.analyzeRisk(userAddress);
+    console.log('Análisis de riesgo:', riskAnalysis);
+
+    // Obtener recomendaciones para un usuario
+    const recommendations = await sdk.getRecommendations(userAddress);
+    console.log('Recomendaciones:', recommendations);
+  } catch (error) {
+    console.error('Error al usar el SDK:', error);
+  }
+}
+
+main();
+```
+
+### Métodos Disponibles
+
+*   `constructor(baseUrl: string)`: Inicializa el SDK con la URL base de la API.
+*   `getStrategies(): Promise<Strategy[]>`: Obtiene una lista de estrategias DeFi disponibles.
+*   `analyzeRisk(userAddress: string): Promise<RiskAnalysis>`: Realiza un análisis de riesgo para una dirección de usuario específica.
+*   `getRecommendations(userAddress: string): Promise<Recommendation[]>`: Obtiene recomendaciones personalizadas para una dirección de usuario.
+
+### Tipos de Datos
+
+```typescript
+interface Strategy {
+  id: string;
+  name: string;
+  description: string;
+  apy: number;
+  riskLevel: 'low' | 'medium' | 'high';
+  protocols: string[];
+}
+
+interface RiskAnalysis {
+  userProfile: string;
+  riskScore: number;
+  recommendations: string[];
+}
+
+interface Recommendation {
+  strategyId: string;
+  reason: string;
+  expectedReturn: number;
+}
+```
