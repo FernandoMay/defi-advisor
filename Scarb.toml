@@ -1,0 +1,6 @@
+[package]
+name = "defi_advisor_contracts"
+version = "0.1.0"
+
+[dependencies]
+openzeppelin = { git = "https://github.com/OpenZeppelin/cairo-contracts.git", tag = "v0.8.0" }
