@@ -1,0 +1,24 @@
+# Dependencies
+/sdk/node_modules
+/sdk/dist
+
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Rust
+/target
+
+# Flutter
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+
+# IDEs and editors
+.idea/
+.vscode/
+
+# OS-specific
+.DS_Store
